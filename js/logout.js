@@ -1,0 +1,21 @@
+        function logout()
+        {
+            $.ajax("/CMSDrone/cms/logout",{
+                type:"get",
+                success:function(res)
+                {
+                    if(res.success)
+                    {
+                        window.location.href="login.html";
+                    }
+                    if(res.isException)
+                    {
+                        console.log(res.exception);
+                    }
+                },
+                error:function(res)
+                {
+                    console.log(res);
+                }
+            })
+        }

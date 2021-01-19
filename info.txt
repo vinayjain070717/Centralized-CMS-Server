@@ -1,0 +1,14 @@
+ws://localhost:8080/CMSDrone/server2/drone/4
+ws://localhost:8080/CMSDrone/server2/mobile/1
+"typeId:1,id:avx5,dateTime:2020-01-17,message:AuthenticateRequest, payload:{"username":"member3Username","password":"member3pwd"}"
+"typeId:1,id:avx6,dateTime:2020-01-06T20:17:46.384Z,message:SendListOfDevicesRequest,payload:{}"
+"typeId:1,id:avx7,dateTime:2020-01-06T20:17:46.384Z,message:AssignDeviceRequest,payload:{"deviceId":"4"}"
+"typeId:1,id:avx9,dateTime:2020-01-06T20:17:46.384Z,message:CommandRequest, payload:{"move":"up"}"
+
+"typeId:1,id:avx7,dateTime:2020-01-06T20:17:46.384Z,message:ReleaseDroneRequest,payload:{}"
+"typeId:1,id:avx8,dateTime:2020-01-07T20:18:50.384Z, message:StatusNotificationRequest,payload:{"distanceTravelled":50,"latitude":20.7972,"longitude":76.9922,"altitude":25,"speed":7,"remainingFlightTime":12,"timeElapsed":10,"airSpeed":40}"
+
+
+"typeId:1,id:avx5,dateTime:2020-01-06T20:17:46.384Z,message:RangeAlertNotificationRequest,payload:{"communicationRangeLeft":20.3}"
+"typeId:1,id:avx9,dateTime:2020-01-06T20:17:46.384Z,message:HeartBeatRequest,payload:{}"
+"typeId:1,id:avx5,dateTime:2020-01-06T20:17:46.384Z,message:TechnicalProblemRequest,payload:{"problem":"Propeller not working"}"

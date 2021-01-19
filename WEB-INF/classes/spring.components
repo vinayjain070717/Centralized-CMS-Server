@@ -1,0 +1,8 @@
+MainServer2=javax.websocket.server.ServerEndpoint
+com.thinking.machines.cms.CmsApplication=org.springframework.stereotype.Component
+com.thinking.machines.cms.configuration.Datasource=org.springframework.stereotype.Component
+com.thinking.machines.cms.configuration.HttpSessionConfig=org.springframework.stereotype.Component
+com.thinking.machines.cms.services.AdministratorService=org.springframework.stereotype.Component
+com.thinking.machines.cms.services.DroneService=org.springframework.stereotype.Component
+com.thinking.machines.cms.services.LoggingService=org.springframework.stereotype.Component
+com.thinking.machines.cms.services.MemberService=org.springframework.stereotype.Component

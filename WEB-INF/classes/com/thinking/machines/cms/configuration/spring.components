@@ -1,0 +1,2 @@
+com.thinking.machines.cms.configuration.Datasource=org.springframework.stereotype.Component
+com.thinking.machines.cms.configuration.HttpSessionConfig=org.springframework.stereotype.Component

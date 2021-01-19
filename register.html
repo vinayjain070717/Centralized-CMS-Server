@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Registration page</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="css/myCssClasses.css">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <style type="text/css">
+        .invalid_field {
+            border-color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        $.get("/CMSDrone/cms/getAdministrators", function(data, status) {
+            if (status.localeCompare("success") == 0) {
+                console.log(data.length);
+                if (data.length > 0) {
+                    window.location.href = "login.html";
+                }
+            }
+        });
+
+        function registerUser() {
+            var flag = checkAll();
+            if (!flag) return;
+            var firstName = $("#firstName").val();
+            var lastName = $("#lastName").val();
+            var username = $("#userName").val();
+            var password = $("#password").val();
+            var jsonString = {
+                "firstName": firstName,
+                "lastName": lastName,
+                "username": username,
+                "pwd": password,
+                "pwdKey": "123"
+            };
+            console.log(JSON.stringify(jsonString));
+            // console.log(JSON)
+            $.ajax("/CMSDrone/cms/addAdministrator", {
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(jsonString),
+                success: function(res) {
+                    // console.log("success invoked");
+                    console.log(res);
+                    if (res.success) {
+                        if (res.hasResult) {
+                            // console.log(res.result.username);
+                            $("#successLabel").text("Administrator Added");
+                        }
+                        setTimeout(function() {
+                            window.location.href = "login.html";
+                        }, 5000);
+                    }
+                    if (res.isException) {
+                        // console.log(res.exception);
+                        $("#errorLabel").text(res.exception);
+                    }
+                    if (res.hasResult) {
+                        // console.log(res.result);
+                        $("#successLabel").text("Administrator added : " + res.result.username + " redirecting to login page");
+                    }
+                },
+                error: function(res) {
+                    $("#errorLabel").text(res.error);
+                }
+            });
+
+        }
+        this.firstNameValidation = function() {
+            var regex = RegExp("^[a-zA-Z]+$", "gm");
+            var firstName = $("#firstName").val();
+            if ($("#firstName").val().length > 0 && regex.test(firstName)) {
+                $("#firstNameError").text("");
+                $("#firstName").removeClass("invalid_field");
+                allWell = true;
+            } else {
+                $("#firstNameError").text("Invalid");
+                $("#firstName").addClass("invalid_field");
+                allWell = false;
+            }
+            return allWell;
+        }
+        this.lastNameValidation = function() {
+            var regex = RegExp("^[a-zA-Z]+$", "gm");
+            var lastName = $("#lastName").val();
+            if (lastName.length > 0 && regex.test(lastName)) {
+                $("#lastNameError").text("");
+                $("#lastName").removeClass("invalid_field");
+                allWell = true;
+            } else {
+                $("#lastNameError").text("Invalid");
+                $("#lastName").addClass("invalid_field");
+                allWell = false;
+            }
+            return allWell;
+        }
+        this.userNameValidation = function() {
+            var regex = /^[\w@.-_]{1,}$/gm;
+            var userName = $("#userName").val();
+            var flag = regex.test(userName);
+            // if(regex.test(userName))
+            if (flag) {
+                console.log("bad");
+                $("#userNameError").text("");
+                $("#userName").removeClass("invalid_field");
+                allWell = true;
+            } else {
+                console.log("good");
+                $("#userNameError").text("Invalid");
+                $("#userName").addClass("invalid_field");
+                allWell = false;
+            }
+            return allWell;
+        }
+        this.passwordValidation = function() {
+            var regex = RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[@_#$])[\\w@_#$]{8,15}$", "gm");
+            var password = $("#password").val();
+            var flag = regex.test(password)
+            if (flag) {
+                $("#passwordError").text("");
+                $("#password").removeClass("invalid_field");
+                allWell = true;
+            } else {
+                $("#passwordError").text("Invalid");
+                $("#password").addClass("invalid_field");
+                allWell = false;
+            }
+            return allWell;
+        }
+        this.confirmPasswordValidation = function() {
+            var password = $("#password").val();
+            var confirmPassword = $("#confirmPassword").val();
+            console.log("Cool");
+            if (!password.localeCompare(confirmPassword) && confirmPassword.length != 0) {
+                $("#confirmPasswordError").text("");
+                $("#confirmPassword").removeClass("invalid_field");
+                allWell = true;
+            } else {
+                $("#confirmPasswordError").text("Incorrect");
+                $("#confirmPassword").addClass("invalid_field");
+                allWell = false;
+            }
+            return allWell;
+        }
+
+        function checkAll() {
+            this.allWell = true;
+            var flag = 0;
+            //donedone
+            allWell = firstNameValidation();
+            if (allWell == false) flag++;
+            allWell = lastNameValidation();
+            if (allWell == false) flag++;
+            allWell = userNameValidation();
+            if (allWell == false) flag++;
+            allWell = passwordValidation();
+            if (allWell == false) flag++;
+            allWell = confirmPasswordValidation();
+            if (allWell == false) flag++;
+            if (flag != 0) return false;
+            else return true;
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-images">
+                        <img src="img/drone.jpg" style="width:500px;height:100%">
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <div class="text-center">
+                                <span id="successLabel" class="success_label"></span>
+                                <span id="errorLabel" class="error_label"></span>
+                            </div>
+                            <form class="user">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="firstName" placeholder="First Name" oninput="firstNameValidation()">
+                                        <label id="firstNameError" style="color:red;padding-left: 20px"></label>
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="lastName" placeholder="Last Name" oninput="lastNameValidation()">
+                                        <label id="lastNameError" style="color:red;padding-left:20px"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="userName" placeholder="User Name" oninput="userNameValidation()">
+                                    <label id="userNameError" style="color:red;padding-left:20px"></label>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="password" placeholder="Password" oninput="passwordValidation()">
+                                        <label id="passwordError" style="color:red;padding-left:20px"></label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="confirmPassword" placeholder="Confirm Password" oninput="confirmPasswordValidation()">
+                                        <label id="confirmPasswordError" style="color:red;padding-left:20px"></label>
+                                    </div>
+                                    <!-- <img src="/CMS/webservice/captcha"> -->
+                                </div>
+                                <button type='button' class="btn btn-primary btn-user btn-block" onclick="registerUser()">Register account</button>
+
+
+
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>

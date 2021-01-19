@@ -1,0 +1,33 @@
+<!Doctype html>
+<html lang='en'>
+
+<head>
+    <title>Redirecting page</title>
+    <meta charset="utf-8">
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <script>
+        window.onload = function() {
+            $.get("/CMSDrone/cms/getAdministrators", function(data, status) {
+                if (status.localeCompare("success") == 0) {
+                    console.log(data.length);
+                    if (data.length > 0) {
+                        window.location.href = "login.html";
+                    } else {
+                        window.location.href = "register.html";
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <center>
+        <H1>
+            WAIT TILL WE CHECK
+        </H1>
+    </center>
+</body>
+
+</html>

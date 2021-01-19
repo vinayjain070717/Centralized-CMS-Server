@@ -1,0 +1,1 @@
+javac -cp c:\tomcat9\lib\*;..\..\..\..;. *.java

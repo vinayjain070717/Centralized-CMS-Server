@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Home Page</title>
+    <!-- <link rel="import" href="ChangePassword.html"> -->
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="css/myCssClasses.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <style type="text/css">
+        .invalid_field {
+            border-color: red;
+        }
+    </style>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homePage.jsp">
+                <div class="sidebar-brand-text mx-10 " style="font-size:50px">CMS</div>
+            </a>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="homePage.jsp">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="insertDrone.jsp">
+                    <i class="fas fa-plus"></i>
+                    <span>Insert Drone</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="ViewLogs.jsp">
+                    <i class="fas fa-eye"></i>
+                    <span>View Logs</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="updateCredentials.jsp">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Update Credentials</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="activeConnections.jsp">
+                    <i class="fas fa-link"></i>
+                    <span>Active Connections</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="activePairs.jsp">
+                    <i class="fas fa-link"></i>
+                    <span>Active Pairs</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
+                </a>
+                <!-- </div> -->
+            </li>
+        </ul>
+
+
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" onclick="logout()">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

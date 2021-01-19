@@ -1,0 +1,1 @@
+javac -classpath WEB-INF\lib\*;..\..\lib\*;WEB-INF\classes;. *.java

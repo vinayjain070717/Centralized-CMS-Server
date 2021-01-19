@@ -1,0 +1,1 @@
+javac -cp ..\..\..\..\..\..\classes\;..\..\..\..\..\..\lib\*;. Message.java
